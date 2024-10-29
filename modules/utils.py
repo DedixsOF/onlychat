@@ -10,7 +10,7 @@ def load_config():
 def setup_logging():
     if not os.path.exists('logs'):
         os.makedirs('logs')
-    logging.basicConfig(filename='logs/chat_logs.txt', level=logging.INFO, filemode='a',
+    logging.basicConfig(filename='logs/server_logs.txt', level=logging.INFO, filemode='a',
                     format = "%(asctime)s %(levelname)s %(message)s", datefmt = "%a %d %b %Y %H:%M:%S")
     return logging.getLogger()
 

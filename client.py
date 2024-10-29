@@ -32,7 +32,7 @@ class ChatClient:
             print("Available Chats:")
             while True:
                 for index, chat in enumerate(chats):
-                    chat_id, chat_name, chat_permissions = chat
+                    chat_id, chat_name, chat_permissions, chat_status = chat
                     print(f"{index + 1}. {chat_name} (ID: {chat_id})")
                 try:
                     choice = int(input("Select a chat by entering the corresponding number: ")) - 1

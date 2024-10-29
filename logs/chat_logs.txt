@@ -291,3 +291,24 @@ Tue 29 Oct 2024 11:02:36 INFO 127.0.0.1 - - [29/Oct/2024 11:02:36] "GET /socket.
 Tue 29 Oct 2024 11:02:39 INFO Nick joined chat 2.
 Tue 29 Oct 2024 11:02:42 INFO Nick sent message to chat 2: ko
 Tue 29 Oct 2024 11:02:46 INFO Nick sent message to chat 2: kokoko
+Tue 29 Oct 2024 12:05:02 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+Tue 29 Oct 2024 12:05:02 INFO [33mPress CTRL+C to quit[0m
+Tue 29 Oct 2024 12:05:36 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+Tue 29 Oct 2024 12:05:36 INFO [33mPress CTRL+C to quit[0m
+Tue 29 Oct 2024 12:07:18 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+Tue 29 Oct 2024 12:07:18 INFO [33mPress CTRL+C to quit[0m
+Tue 29 Oct 2024 12:07:29 INFO Nick authenticated successfully.
+Tue 29 Oct 2024 12:07:29 INFO 127.0.0.1 - - [29/Oct/2024 12:07:29] "POST /login HTTP/1.1" 200 -
+Tue 29 Oct 2024 12:07:31 INFO Sent chat list to user.
+Tue 29 Oct 2024 12:07:31 INFO 127.0.0.1 - - [29/Oct/2024 12:07:31] "GET /get_chats?permissions=4 HTTP/1.1" 200 -
+Tue 29 Oct 2024 12:08:56 INFO Nick authenticated successfully.
+Tue 29 Oct 2024 12:08:56 INFO 127.0.0.1 - - [29/Oct/2024 12:08:56] "POST /login HTTP/1.1" 200 -
+Tue 29 Oct 2024 12:08:58 INFO Sent chat list to user.
+Tue 29 Oct 2024 12:08:58 INFO 127.0.0.1 - - [29/Oct/2024 12:08:58] "GET /get_chats?permissions=4 HTTP/1.1" 200 -
+Tue 29 Oct 2024 12:09:06 INFO 127.0.0.1 - - [29/Oct/2024 12:09:06] "GET /socket.io/?transport=polling&EIO=4&t=1730182144.9076872 HTTP/1.1" 200 -
+Tue 29 Oct 2024 12:09:09 INFO Nick joined chat 1.
+Tue 29 Oct 2024 12:09:23 INFO User [Nick] sent message to chat 1: heheh
+Tue 29 Oct 2024 12:09:37 INFO 127.0.0.1 - - [29/Oct/2024 12:09:37] "GET /socket.io/?transport=websocket&EIO=4&sid=hf3qq7Llnh2y82i9AAAA&t=1730182146.9518938 HTTP/1.1" 200 -

@@ -100,19 +100,27 @@ def handle_message(data):
     chat_id = data['chat_id']
     message = data['message']
     db.save_message(chat_id, username, message)
-    logger.info(f"{username} sent message to chat {chat_id}: {message}")
+    #logger.info(f"{username} sent message to chat {chat_id}: {message}")
     emit('message', {'username': username, 'message': message}, room=chat_id)
 
 def create_user_console():
-    while True:
-        username = input("Enter username (or 'exit' to quit): ")
-        if username.lower() == 'exit':
-            break
-        password = input("Enter password: ")
-        permissions = int(input("Enter permissions level (1 for user, 2 for admin): "))
-        create_user(username, password, permissions)
-        print(f"User {username} created successfully.")
+    AnyAdmins=db.get_user_perm()
+    isAnyAdmins=AnyAdmins[0][1]
+    if isAnyAdmins == None:
+        print(f"No admin user was found...")
+        while True:
+            username = input("Enter username (or 'exit' to quit): ")
+            if username.lower() == 'exit':
+                break
+            password = input("Enter password: ")
+            permissions = int(input("Enter permissions level (1-3 for user, 4 for admin): "))
+            create_user(username, password, permissions)
+            print(f"User {username} created successfully.")
+    else:
+        print(f"Admin user was found, continue starting...")
+        print(f"One of them: {isAnyAdmins}")
+
 
 if __name__ == "__main__":
-    create_user_console()  # Запускаем консоль для создания пользователей
+    create_user_console()  # Запускаем консоль для создания админа, если такового нет
     socketio.run(app, host=config['SERVER']['IP'], port=int(config['SERVER']['PORT']))

@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
 from flask_socketio import SocketIO, emit, join_room, leave_room
 import jwt
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from modules.utils import load_config, setup_logging
 from modules.db import Database
 from modules.encryption import Encryption
@@ -89,9 +89,14 @@ def get_chats():
 #/add_chat (POST) - создание чата: chat_name, permission (def 1, max 4). (Rec perm 4)
 def  add_chat(data):
     data = request.get_json()
-    chatname = data("name")
-    permissions = data("permissions")
-    status = data("status", "Offline")
+    
+    # Проверка на наличие данных
+    if not data or 'name' not in data or 'permissions' not in data:
+        return jsonify({"status": "failed", "message": "Invalid input."}), 401
+    
+    chatname = data["name"]
+    permissions = data["permissions"]
+    status = data.get("status", "Offline")
     if db.get_chat(chatname) is not None:
         return jsonify({"status": "failed", "message": "Chat already exists."}), 400
     

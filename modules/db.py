@@ -55,7 +55,7 @@ class Database:
         self.cursor.execute('SELECT * FROM chats')
         return self.cursor.fetchall()
     
-    def get_all_users(Self):
+    def get_all_users(self):
         self.cursor.execute('SELECT * FROM users')
         return self.cursor.fetchall()
 

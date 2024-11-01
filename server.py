@@ -87,7 +87,7 @@ def get_chats():
 
 @app.route('/add_chat', methods = ['POST'])
 #/add_chat (POST) - создание чата: chat_name, permission (def 1, max 4). (Rec perm 4)
-def  add_chat(data):
+def  add_chat():
     data = request.get_json()
     
     # Проверка на наличие данных
@@ -164,4 +164,4 @@ def create_user_console():
 
 if __name__ == "__main__":
     create_user_console()  # Запускаем консоль для создания админа, если такового нет
-    socketio.run(app, host=config['SERVER']['IP'], port=int(config['SERVER']['PORT']))
+    socketio.run(app, host=config['SERVER']['IP'], port=int(config['SERVER']['PORT']), debug=True)

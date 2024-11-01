@@ -115,30 +115,41 @@ class ChatSelectWindow(QWidget):
                 self.chat_list.addItem(f"{chat_name} (ID: {chat_id})")
         else:
             QMessageBox.warning(self, 'Error', 'Failed to load chats')
-
+    
+    def refresh_chats(self):
+        self.chat_list.clear()  # Очищаем текущий список
+        self.load_chats()  # Загружаем чаты заново
+    
     def join_chat(self):
         if self.chat_list.currentRow() >= 0:
             selected_chat = self.chats[self.chat_list.currentRow()]
             chat_id = selected_chat[0]
-            self.chat_window = ChatWindow(self.username, chat_id)
+            self.chat_window = ChatWindow(self.username, chat_id, self.token, self.permissions)
             self.chat_window.show()
-            self.close()
+        self.close()
     def open_admin_panel(self):
-        self.admin_panel = AdminPanel(self.token)
+        self.admin_panel = AdminPanel(self.token, self)
         self.admin_panel.show()
 
 
 class ChatWindow(QWidget):
-    def __init__(self, username, chat_id):
+    def __init__(self, username, chat_id, token, permissions):
         super().__init__()
         self.username = username
         self.chat_id = chat_id
+        self.token = token
+        self.permissions = permissions
         self.init_ui()
         self.connect_to_server()
 
     def init_ui(self):
         layout = QVBoxLayout()
 
+        # Добавляем кнопку выхода в верхней части окна
+        self.exit_button = QPushButton('Exit Chat')
+        self.exit_button.clicked.connect(self.exit_chat)
+        layout.addWidget(self.exit_button)
+        
         # Chat display
         self.chat_display = QTextEdit()
         self.chat_display.setReadOnly(True)
@@ -158,6 +169,21 @@ class ChatWindow(QWidget):
         self.setWindowTitle(f'Chat - {self.username}')
         self.setGeometry(300, 300, 500, 400)
 
+        # Добавляем обработчик Enter для отправки сообщения
+        self.message_input.returnPressed.connect(self.send_message)
+
+    def exit_chat(self):
+        # Отключаемся от чата
+        sio.emit('leave_chat', {'username': self.username, 'chat_id': self.chat_id})
+        sio.disconnect()
+        
+        # Создаем и показываем окно выбора чата
+        self.chat_select = ChatSelectWindow(self.username, self.token, self.permissions)
+        self.chat_select.show()
+        
+        # Закрываем текущее окно чата
+        self.close()
+        
     def connect_to_server(self):
         sio.connect(SERVER_URL)
         sio.emit('join_chat', {'username': self.username, 'chat_id': self.chat_id})
@@ -182,9 +208,10 @@ class ChatWindow(QWidget):
         event.accept()
 
 class AdminPanel(QWidget):
-    def __init__(self, token):
+    def __init__(self, token, chat_select_window):
         super().__init__()
         self.token = token
+        self.chat_select_window = chat_select_window
         self.init_ui()
 
     def init_ui(self):
@@ -246,8 +273,15 @@ class AdminPanel(QWidget):
         
         if response.status_code == 201:
             QMessageBox.information(self, 'Success', 'Chat created successfully')
+            if self.chat_select_window:
+                self.chat_select_window.refresh_chats()  # Обновляем список чатов
         else:
-            QMessageBox.warning(self, 'Error', 'Failed to create chat')
+            try:
+                error_data = response.json()  # Получаем JSON из ответа
+                error_message = error_data.get('message', 'Unknown error')  # Получаем сообщение об ошибке или используем значение по умолчанию
+                QMessageBox.warning(self, 'Error', f'Failed to create chat: {error_message}')
+            except ValueError:  # Если JSON не может быть прочитан
+                QMessageBox.warning(self, 'Error', f'Failed to create chat: Status code {response.status_code}')
 
     def load_users(self):
         headers = {"Authorization": f"Bearer {self.token}"}

@@ -1,0 +1,10 @@
+client.py
+client_qt.py
+config_c.ini
+config_ca.ini
+config_s.ini
+readme.md
+logs
+.venv
+.idea
+chat.db-journal

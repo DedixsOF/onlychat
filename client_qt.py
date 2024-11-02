@@ -173,7 +173,6 @@ class ChatWindow(QWidget):
         self.message_input.returnPressed.connect(self.send_message)
 
     def exit_chat(self):
-        # Отключаемся от чата
         sio.emit('leave_chat', {'username': self.username, 'chat_id': self.chat_id})
         sio.disconnect()
         
@@ -202,10 +201,6 @@ class ChatWindow(QWidget):
             })
             self.message_input.clear()
 
-    def closeEvent(self, event):
-        sio.emit('leave_chat', {'username': self.username, 'chat_id': self.chat_id})
-        sio.disconnect()
-        event.accept()
 
 class AdminPanel(QWidget):
     def __init__(self, token, chat_select_window):

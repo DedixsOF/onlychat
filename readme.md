@@ -9,4 +9,4 @@ Chat2 perm 2
 Chat3 perm -
 
 Requriment libs:
-hashlib, PyJWT, Flask, flask_socketio, requests, websocket-client, socketio
+PyJWT, Flask, flask_socketio, requests, websocket-client, socketio

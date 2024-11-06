@@ -7,7 +7,7 @@ from modules.db import Database
 from modules.encryption import Encryption
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'bbe76ef0db9779dd62cfc89845a'
+app.config['SECRET_KEY'] = 'bbe76ef0db9779dd62cfc89845a' #Should be same as the config's one.
 socketio = SocketIO(app)
 logger = setup_logging()
 config = load_config()
@@ -45,7 +45,6 @@ def login():
     password = data.get("password")
     #print(f"{username} and {password}") #debug, for delete
     user = db.get_user(username)
-    
     if user:
         stored_password, salt, permissions = user[2], user[3], user[4]
         if Encryption.verify_password(stored_password, password, salt):
@@ -75,10 +74,15 @@ def get_chats():
         return jsonify({"status": "failed", "message": "Unauthorized"}), 401
     
     permissions = request.args.get("permissions", type=int)
-    chats = db.get_chats_for_user(permissions)
-    logger.info("Sent chat list to user.")
-    return jsonify(chats), 200
-   
+    username = request.args.get("username", type=str)
+    user = db.get_user(username)
+    if permissions == user[4]:
+        chats = db.get_chats_for_user(permissions)
+        logger.info("Sent chat list to user.")
+        return jsonify(chats), 200
+    return jsonify({"status": "failed", "message": "There was a data conflict. Perhaps they were substituted and do not correspond to reality."}), 409
+
+
 @app.route('/get_users', methods =['GET'])
 #/get_users (GET) -  получение списка всех пользователей ( rec perm 4)
 
@@ -101,8 +105,9 @@ def  add_chat():
         return jsonify({"status": "failed", "message": "Chat already exists."}), 400
     
     db.add_chat(chatname, permissions, status)
-    return jsonify({"status": "success", "message": "Chat created successfully."}), 201
     logger.info(f"Chat [{chatname}] was created with permissions [{permissions}] and status '{status}'.")
+    return jsonify({"status": "success", "message": "Chat created successfully."}), 201
+    
 
 @app.route('/change_user_perm', methods = ['POST'])
 #/change_user_perm (POST) - (rec perm 4)

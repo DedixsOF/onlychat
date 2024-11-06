@@ -1,0 +1,54 @@
+Thu 07 Nov 2024 02:40:53 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+Thu 07 Nov 2024 02:40:53 INFO [33mPress CTRL+C to quit[0m
+Thu 07 Nov 2024 02:40:53 INFO  * Restarting with stat
+Thu 07 Nov 2024 02:40:54 WARNING  * Debugger is active!
+Thu 07 Nov 2024 02:40:54 INFO  * Debugger PIN: 228-760-185
+Thu 07 Nov 2024 02:42:01 INFO 127.0.0.1 - - [07/Nov/2024 02:42:01] "[35m[1mPOST /login HTTP/1.1[0m" 500 -
+Thu 07 Nov 2024 02:44:54 INFO  * Detected change in 'f:\\onlychat\\onlychat\\srv\\server.py', reloading
+Thu 07 Nov 2024 02:44:54 INFO  * Restarting with stat
+Thu 07 Nov 2024 02:44:55 WARNING  * Debugger is active!
+Thu 07 Nov 2024 02:44:55 INFO  * Debugger PIN: 228-760-185
+Thu 07 Nov 2024 02:45:13 INFO  * Detected change in 'f:\\onlychat\\onlychat\\srv\\server.py', reloading
+Thu 07 Nov 2024 02:45:14 INFO  * Restarting with stat
+Thu 07 Nov 2024 02:45:15 WARNING  * Debugger is active!
+Thu 07 Nov 2024 02:45:15 INFO  * Debugger PIN: 228-760-185
+Thu 07 Nov 2024 02:45:26 INFO Nick authenticated successfully.
+Thu 07 Nov 2024 02:45:26 INFO 127.0.0.1 - - [07/Nov/2024 02:45:26] "POST /login HTTP/1.1" 200 -
+Thu 07 Nov 2024 02:45:28 INFO 127.0.0.1 - - [07/Nov/2024 02:45:28] "[35m[1mGET /get_chats?permissions=4 HTTP/1.1[0m" 500 -
+Thu 07 Nov 2024 02:50:07 INFO  * Detected change in 'f:\\onlychat\\onlychat\\srv\\server.py', reloading
+Thu 07 Nov 2024 02:50:07 INFO  * Restarting with stat
+Thu 07 Nov 2024 02:50:08 WARNING  * Debugger is active!
+Thu 07 Nov 2024 02:50:08 INFO  * Debugger PIN: 228-760-185
+Thu 07 Nov 2024 02:50:29 INFO Nick authenticated successfully.
+Thu 07 Nov 2024 02:50:29 INFO 127.0.0.1 - - [07/Nov/2024 02:50:29] "POST /login HTTP/1.1" 200 -
+Thu 07 Nov 2024 02:50:31 INFO 127.0.0.1 - - [07/Nov/2024 02:50:31] "[35m[1mGET /get_chats?permissions=4 HTTP/1.1[0m" 500 -
+Thu 07 Nov 2024 02:52:15 INFO  * Detected change in 'f:\\onlychat\\onlychat\\srv\\server.py', reloading
+Thu 07 Nov 2024 02:52:15 INFO  * Restarting with stat
+Thu 07 Nov 2024 02:52:16 WARNING  * Debugger is active!
+Thu 07 Nov 2024 02:52:16 INFO  * Debugger PIN: 228-760-185
+Thu 07 Nov 2024 02:52:46 INFO 127.0.0.1 - - [07/Nov/2024 02:52:46] "[31m[1mPOST /login HTTP/1.1[0m" 401 -
+Thu 07 Nov 2024 02:53:05 INFO 127.0.0.1 - - [07/Nov/2024 02:53:05] "[31m[1mPOST /login HTTP/1.1[0m" 401 -
+Thu 07 Nov 2024 02:53:15 INFO Nick authenticated successfully.
+Thu 07 Nov 2024 02:53:15 INFO 127.0.0.1 - - [07/Nov/2024 02:53:15] "POST /login HTTP/1.1" 200 -
+Thu 07 Nov 2024 02:53:17 INFO 127.0.0.1 - - [07/Nov/2024 02:53:17] "[35m[1mGET /get_chats?permissions=4 HTTP/1.1[0m" 500 -
+Thu 07 Nov 2024 02:53:28 INFO 127.0.0.1 - - [07/Nov/2024 02:53:28] "[31m[1mGET /get_users HTTP/1.1[0m" 415 -
+Thu 07 Nov 2024 02:54:22 INFO 127.0.0.1 - - [07/Nov/2024 02:54:22] "[31m[1mPOST /login HTTP/1.1[0m" 401 -
+Thu 07 Nov 2024 02:54:29 INFO Nick authenticated successfully.
+Thu 07 Nov 2024 02:54:29 INFO 127.0.0.1 - - [07/Nov/2024 02:54:29] "POST /login HTTP/1.1" 200 -
+Thu 07 Nov 2024 02:54:31 INFO 127.0.0.1 - - [07/Nov/2024 02:54:31] "[35m[1mGET /get_chats?permissions=4 HTTP/1.1[0m" 500 -
+Thu 07 Nov 2024 02:56:00 INFO Nick authenticated successfully.
+Thu 07 Nov 2024 02:56:00 INFO 127.0.0.1 - - [07/Nov/2024 02:56:00] "POST /login HTTP/1.1" 200 -
+Thu 07 Nov 2024 02:56:02 INFO Sent chat list to user.
+Thu 07 Nov 2024 02:56:02 INFO 127.0.0.1 - - [07/Nov/2024 02:56:02] "GET /get_chats?permissions=4&username=Nick HTTP/1.1" 200 -
+Thu 07 Nov 2024 02:56:28 INFO Nick authenticated successfully.
+Thu 07 Nov 2024 02:56:28 INFO 127.0.0.1 - - [07/Nov/2024 02:56:28] "POST /login HTTP/1.1" 200 -
+Thu 07 Nov 2024 02:56:30 INFO Sent chat list to user.
+Thu 07 Nov 2024 02:56:30 INFO 127.0.0.1 - - [07/Nov/2024 02:56:30] "GET /get_chats?permissions=4&username=Nick HTTP/1.1" 200 -
+Thu 07 Nov 2024 02:56:55 INFO Nick authenticated successfully.
+Thu 07 Nov 2024 02:56:55 INFO 127.0.0.1 - - [07/Nov/2024 02:56:55] "POST /login HTTP/1.1" 200 -
+Thu 07 Nov 2024 02:56:57 INFO Sent chat list to user.
+Thu 07 Nov 2024 02:56:57 INFO 127.0.0.1 - - [07/Nov/2024 02:56:57] "GET /get_chats?permissions=4&username=Nick HTTP/1.1" 200 -
+Thu 07 Nov 2024 02:56:59 INFO 127.0.0.1 - - [07/Nov/2024 02:56:59] "GET /socket.io/?transport=polling&EIO=4&t=1730926617.7918272 HTTP/1.1" 200 -
+Thu 07 Nov 2024 02:57:01 INFO Nick joined chat 2.
+Thu 07 Nov 2024 02:57:13 INFO 127.0.0.1 - - [07/Nov/2024 02:57:13] "GET /socket.io/?transport=websocket&EIO=4&sid=Y4icHVToFyAbe-aQAAAA&t=1730926619.8471868 HTTP/1.1" 200 -

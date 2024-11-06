@@ -3,7 +3,7 @@ import socketio
 from modules.utils import load_config
 
 config = load_config('arm')
-SERVER_URL = config['CLIENT']['SERVER_URL']
+SERVER_URL = config['CLIENT_ARM']['SERVER_URL']
 sio = socketio.Client()
 
 class ChatClient:
@@ -24,9 +24,9 @@ class ChatClient:
             print("Login failed.")
             return None
 
-    def get_chats(self, permissions):
+    def get_chats(self, permissions, username):
         headers = {"Authorization": f"Bearer {self.token}"}
-        response = requests.get(f"{SERVER_URL}/get_chats", headers=headers, params={"permissions": permissions})
+        response = requests.get(f"{SERVER_URL}/get_chats", headers=headers, params={"permissions": permissions, "username": username})
         if response.status_code == 200:
             chats = response.json()
             print("Available Chats:")
@@ -35,7 +35,8 @@ class ChatClient:
                     chat_id, chat_name, chat_permissions, chat_status = chat
                     print(f"{index + 1}. {chat_name} (ID: {chat_id})")
                 try:
-                    choice = int(input("Select a chat by entering the corresponding number: ")) - 1
+                    #choice = int(input("Select a chat by entering the corresponding number: ")) - 1 #disabled, data gets from config
+                    choice = int(config['CLIENT_ARM']['CHAT_ID'])
                     if 0 <= choice < len(chats):
                         self.chat_id = chats[choice][0]
                         return self.chat_id
@@ -72,12 +73,14 @@ def disconnect():
 
 if __name__ == "__main__":
     client = ChatClient()
-    username = input("Username: ")
-    password = input("Password: ")
+    #username = input("Username: ") #disabled, data gets from config
+    #password = input("Password: ") #disabled, data gets from config
+    username = config['CLIENT_ARM']['USER']
+    password = config['CLIENT_ARM']['PASSWORD']
     permissions = client.login(username, password)
 
     if permissions is not None:
-        chat_id = client.get_chats(permissions)
+        chat_id = client.get_chats(permissions, username)
         if chat_id:
             client.connect_to_server()
             while True:

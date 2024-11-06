@@ -39,6 +39,10 @@ class Database:
         self.cursor.execute('SELECT * FROM users WHERE username = ?', (username,))
         return self.cursor.fetchone()
     
+    def get_permissions(self, username):
+        self.cursor.execute('SELECT * FROM users WHERE username = ?', (username,))
+        return self.cursor.fetchone()
+    
     def get_chat(self, chatname):
         self.cursor.execute('SELECT * FROM chats WHERE name = ?', (chatname,))
         return self.cursor.fetchone()

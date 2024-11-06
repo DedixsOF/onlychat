@@ -4,7 +4,7 @@ import os
 
 def load_config():
     config = configparser.ConfigParser()
-    config.read('config.ini')
+    config.read('config_srv.ini')
     return config
 
 def setup_logging():

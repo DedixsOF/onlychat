@@ -7,7 +7,7 @@ import requests
 import socketio
 from modules.utils import load_config
 
-config = load_config()
+config = load_config('QT')
 SERVER_URL = config['CLIENT']['SERVER_URL']
 sio = socketio.Client()
 
